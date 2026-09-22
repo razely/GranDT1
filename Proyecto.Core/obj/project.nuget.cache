@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "dgSpecHash": "9td39qtD3W0=",
+  "success": true,
+  "projectFilePath": "/home/francom/Documentos/grandt/Proyecto.Core/Proyecto.Core.csproj",
+  "expectedPackageFiles": [
+    "/home/francom/.nuget/packages/microsoft.aspnetcore.app.ref/10.0.12/microsoft.aspnetcore.app.ref.10.0.12.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "message": "Problem reading the cache file /home/francom/Documentos/grandt/Proyecto.Core/obj/project.nuget.cache : The input does not contain any JSON tokens. Expected the input to start with a valid JSON token, when isFinalBlock is true. Path: $ | LineNumber: 0 | BytePositionInLine: 0.",
+      "projectPath": "/home/francom/Documentos/grandt/Proyecto.Core/Proyecto.Core.csproj",
+      "warningLevel": 1,
+      "filePath": "/home/francom/Documentos/grandt/Proyecto.Core/Proyecto.Core.csproj",
+      "targetGraphs": []
+    }
+  ]
+}
