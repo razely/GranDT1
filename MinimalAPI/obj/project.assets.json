@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net10.0": {}
+    "net10.0": {
+      "Proyecto.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/Proyecto.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Proyecto.Core.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Proyecto.Core/1.0.0": {
+      "type": "project",
+      "path": "../Proyecto.Core/Proyecto.Core.csproj",
+      "msbuildProject": "../Proyecto.Core/Proyecto.Core.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net10.0": []
+    "net10.0": [
+      "Proyecto.Core >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "/home/francom/.nuget/packages/": {}
@@ -13,11 +32,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/francom/Documentos/grandt/Proyecto.Core/Proyecto.Core.csproj",
-      "projectName": "Proyecto.Core",
-      "projectPath": "/home/francom/Documentos/grandt/Proyecto.Core/Proyecto.Core.csproj",
+      "projectUniqueName": "/home/francom/Documentos/grandt/MinimalAPI/MinimalAPI.csproj",
+      "projectName": "MinimalAPI",
+      "projectPath": "/home/francom/Documentos/grandt/MinimalAPI/MinimalAPI.csproj",
       "packagesPath": "/home/francom/.nuget/packages/",
-      "outputPath": "/home/francom/Documentos/grandt/Proyecto.Core/obj/",
+      "outputPath": "/home/francom/Documentos/grandt/MinimalAPI/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/francom/.nuget/NuGet/NuGet.Config"
@@ -31,7 +50,11 @@
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "/home/francom/Documentos/grandt/Proyecto.Core/Proyecto.Core.csproj": {
+              "projectPath": "/home/francom/Documentos/grandt/Proyecto.Core/Proyecto.Core.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -67,6 +90,9 @@
           }
         ],
         "frameworkReferences": {
+          "Microsoft.AspNetCore.App": {
+            "privateAssets": "none"
+          },
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }

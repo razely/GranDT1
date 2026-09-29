@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9td39qtD3W0=",
+  "dgSpecHash": "TxYTYvGfMLA=",
   "success": true,
-  "projectFilePath": "/home/francom/Documentos/grandt/Proyecto.Core/Proyecto.Core.csproj",
+  "projectFilePath": "/home/francom/Documentos/grandt/MinimalAPI/MinimalAPI.csproj",
   "expectedPackageFiles": [
     "/home/francom/.nuget/packages/microsoft.aspnetcore.app.ref/10.0.12/microsoft.aspnetcore.app.ref.10.0.12.nupkg.sha512"
   ],
