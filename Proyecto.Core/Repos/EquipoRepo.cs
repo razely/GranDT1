@@ -1,41 +1,34 @@
 using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using Dapper;
+using Proyecto.Core.Interfaces;
 using Proyecto.Core.Models;
 
 namespace Proyecto.Core.Repos
 {
-    public class EquipoRepo
+    public class EquipoRepo : IEquipoRepo
     {
-        // simulación de la tabla Equipo con una lista en memoria
-        private List<Equipo> _equipos = new List<Equipo>
-        {
-            new Equipo { IdEquipo= 1, Nombre = "Boca Juniors" },
-            new Equipo { IdEquipo = 2, Nombre = "River Plate" },
-            new Equipo { IdEquipo = 3, Nombre = "Racing Club" }
-        };
-
-        // obtener la lista completa de equipos
         public List<Equipo> ObtenerTodos()
         {
-            return _equipos;
+            using var db = Conexion.ObtenerConexion();
+            // Mapeamos la columna 'equipo' de MySQL a la propiedad 'Nombre' de C#
+            string sql = "SELECT idEquipo AS IdEquipo, equipo AS Nombre FROM Equipo";
+            return db.Query<Equipo>(sql).ToList();
         }
 
-        // buscar un equipo específico por su id
         public Equipo? ObtenerPorId(int id)
         {
-            foreach (Equipo equipo in _equipos)
-            {
-                if (equipo.IdEquipo == id)
-                {
-                    return equipo; // Lo encontró y lo devuelve
-                }
-            }
-            return null; // Si no lo encuentra, devuelve nulo
+            using var db = Conexion.ObtenerConexion();
+            string sql = "SELECT idEquipo AS IdEquipo, equipo AS Nombre FROM Equipo WHERE idEquipo = @Id";
+            return db.QueryFirstOrDefault<Equipo>(sql, new { Id = id });
         }
 
-        // agregar un equipo nuevo
         public void Agregar(Equipo equipo)
         {
-            _equipos.Add(equipo);
+            using var db = Conexion.ObtenerConexion();
+            string sql = "INSERT INTO Equipo (equipo) VALUES (@Nombre)";
+            db.Execute(sql, equipo);
         }
     }
 }

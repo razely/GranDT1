@@ -1,70 +1,51 @@
-using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using Dapper;
+using Proyecto.Core.Interfaces;
 using Proyecto.Core.Models;
 
 namespace Proyecto.Core.Repos
 {
-    public class JugadorRepo
+    public class JugadorRepo : IJugadorRepo
     {
-        private List<Jugador> _jugadores = new List<Jugador>
-        {
-            new Jugador 
-            { 
-                IdJugador = 1, 
-                IdEquipo = 1, 
-                Nombre = "Edinson", 
-                Apellido = "Cavani", 
-                Apodo = "El Matador", 
-                FechaNacimiento = new DateTime(1987, 2, 14), 
-                Cotizacion = 7.5m, 
-                Posicion = "Delantero" 
-            },
-            new Jugador 
-            { 
-                IdJugador = 2, 
-                IdEquipo = 2, 
-                Nombre = "Franco", 
-                Apellido = "Armani", 
-                Apodo = "El Pulpo", 
-                FechaNacimiento = new DateTime(1986, 10, 16), 
-                Cotizacion = 6.0m, 
-                Posicion = "Arquero" 
-            }
-        };
-
         public List<Jugador> ObtenerTodos()
         {
-            return _jugadores;
+            using var db = Conexion.ObtenerConexion();
+            string sql = @"SELECT idJugador AS IdJugador, 
+                                  idEquipo AS IdEquipo, 
+                                  nombre AS Nombre, 
+                                  apellido AS Apellido, 
+                                  apodo AS Apodo, 
+                                  fechaNacimiento AS FechaNacimiento, 
+                                  cotizacion AS Cotizacion, 
+                                  posicion AS Posicion 
+                           FROM Jugador";
+            return db.Query<Jugador>(sql).ToList();
         }
 
-        public Jugador? ObtenerPorId(int idJugador)
+        public Jugador? ObtenerPorId(int id)
         {
-            foreach (Jugador jugador in _jugadores)
-            {
-                if (jugador.IdJugador == idJugador)
-                {
-                    return jugador;
-                }
-            }
-            return null;
-        }
-
-        public List<Jugador> ObtenerPorEquipo(int idEquipo)
-        {
-            List<Jugador> resultado = new List<Jugador>();
-            foreach (Jugador jugador in _jugadores)
-            {
-                if (jugador.IdEquipo == idEquipo)
-                {
-                    resultado.Add(jugador);
-                }
-            }
-            return resultado;
+            using var db = Conexion.ObtenerConexion();
+            string sql = @"SELECT idJugador AS IdJugador, 
+                                  idEquipo AS IdEquipo, 
+                                  nombre AS Nombre, 
+                                  apellido AS Apellido, 
+                                  apodo AS Apodo, 
+                                  fechaNacimiento AS FechaNacimiento, 
+                                  cotizacion AS Cotizacion, 
+                                  posicion AS Posicion 
+                           FROM Jugador 
+                           WHERE idJugador = @Id";
+            return db.QueryFirstOrDefault<Jugador>(sql, new { Id = id });
         }
 
         public void Agregar(Jugador jugador)
         {
-            _jugadores.Add(jugador);
+            using var db = Conexion.ObtenerConexion();
+            string sql = @"INSERT INTO Jugador (idEquipo, nombre, apellido, apodo, fechaNacimiento, cotizacion, posicion) 
+                           VALUES (@IdEquipo, @Nombre, @Apellido, @Apodo, @FechaNacimiento, @Cotizacion, @Posicion)";
+            db.Execute(sql, jugador);
         }
     }
 }
