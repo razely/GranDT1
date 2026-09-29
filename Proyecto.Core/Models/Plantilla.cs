@@ -1,6 +1,6 @@
 namespace Proyecto.Core.Models;
 
-public class PLantilla
+public class Plantilla
 {
     public int IdPlantilla { get; set; }
     public int IdUsuario { get; set; }

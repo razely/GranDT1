@@ -1,10 +1,12 @@
-using System;
 using System.Collections.Generic;
+using Proyecto.Core.Models;
 
-public interface InterfEquipo
+namespace Proyecto.Core.Interfaces
 {
-    //public void AgregarEquipo(Equipo equipo);
-    //public void EliminarEquipo(int id);
-    //public void Equipo ObtenerEquipoPorId(int id);
-    //public List<Equipo> ObtenerTodosLosEquipos();
+    public interface IEquipoRepo
+    {
+        List<Equipo> ObtenerTodos();
+        Equipo? ObtenerPorId(int id);
+        void Agregar(Equipo equipo);
+    }
 }
